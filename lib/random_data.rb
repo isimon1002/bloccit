@@ -1,6 +1,10 @@
  # #5
  module RandomData
  # #6
+   def self.random_integer
+    rand(1..1000)
+   end
+   
    def self.random_paragraph
      sentences = []
      rand(4..6).times do

@@ -1,8 +1,9 @@
 require 'rails_helper'
+include RandomData
 
  RSpec.describe AdvertisementsController, type: :controller do
  # #8
-   let(:my_advertisement) { Advertisement.create!(title: RandomData.random_sentence, copy: RandomData.random_paragraph, price: RandomData.random_integer) }
+   let(:my_advertisement) { Advertisement.create!(id: 1, title: RandomData.random_sentence, copy: RandomData.random_paragraph, price: RandomData.random_integer) }
 
    describe "GET index" do
      it "returns http success" do
@@ -58,19 +59,20 @@ require 'rails_helper'
     describe "ADVERTISEMENT create" do
  # #4
       it "increases the number of Advertisements by 1" do
-        expect{ advertisement :create, params: { advertisement: { title: RandomData.random_sentence, copy: RandomData.random_paragraph, price: RandomData.random_integer } } }.to change(Advertisement,:count).by(1)
+        expect{ post :create, advertisement: { title: RandomData.random_sentence, copy: RandomData.random_paragraph, price: RandomData.random_integer } }.to change(Advertisement,:count).by(1)
       end
  
  # #5
       it "assigns the new advertisement to @advertisement" do
-        advertisement :create, params: { advertisement: { title: RandomData.random_sentence, copy: RandomData.random_paragraph, price: RandomData.random_integer } }
+        post :create, advertisement: { title: RandomData.random_sentence, copy: RandomData.random_paragraph, price: RandomData.random_integer } 
         expect(assigns(:advertisement)).to eq Advertisement.last
       end
  
  # #6
-      it "redirects to the new post" do
-        advertisement :create, params: { advertisement: { title: RandomData.random_sentence, copy: RandomData.random_paragraph, price: RandomData.random_integer} }
+      it "redirects to the new advertisement" do
+        post :create, advertisement: { title: RandomData.random_sentence, copy: RandomData.random_paragraph, price: RandomData.random_integer} 
         expect(response).to redirect_to Advertisement.last
       end
     end
  end
+
