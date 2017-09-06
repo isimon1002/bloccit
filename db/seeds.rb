@@ -10,7 +10,7 @@
  topics = Topic.all
  
  # Create Posts
- 50.times do
+ 5.times do
  # #1
    Post.create!(
  # #2
@@ -20,6 +20,19 @@
    )
  end
  posts = Post.all
+ 
+  # Create Sponsored Posts
+ 100.times do
+ # #1
+   SponsoredPost.create!(
+ # #2
+     topic:  topics.sample,
+     title:  RandomData.random_sentence,
+     body:   RandomData.random_paragraph,
+     price: RandomData.random_integer
+   )
+ end
+ sponsored_posts = SponsoredPost.all
  
  # Create Comments
  # #3
@@ -43,3 +56,4 @@
  puts "#{Topic.count} topics created"
  puts "#{Post.count} posts created"
  puts "#{Comment.count} comments created"
+ puts "#{SponsoredPost.count} sponsored posts created"

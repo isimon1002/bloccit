@@ -105,7 +105,7 @@ let(:q) { Question.create!(title: RandomData.random_sentence, body: RandomData.r
        new_title = RandomData.random_sentence
        new_body = RandomData.random_paragraph
  
-       put :update, params: { id: q.id, post: {title: new_title, body: new_body, new_resolved: true } }
+       put :update, params: { id: q.id, question: {title: new_title, body: new_body, new_resolved: true } }
  
  # #3
        updated_question = assigns(:question)
@@ -120,7 +120,7 @@ let(:q) { Question.create!(title: RandomData.random_sentence, body: RandomData.r
 
  
  # #4
-       put :update, params: { id: q.id, post: {title: new_title, body: new_body, resolved: true } }
+       put :update, params: { id: q.id, question: {title: new_title, body: new_body, resolved: true } }
        expect(response).to redirect_to q
      end
    end
