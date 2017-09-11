@@ -1,4 +1,4 @@
- require 'random_data'
+require 'random_data'
 
  # Create Users
  5.times do
@@ -33,18 +33,6 @@
  end
  posts = Post.all
  
-  # Create Sponsored Posts
- 25.times do
- # #1
-   SponsoredPost.create!(
- # #2
-     topic:  topics.sample,
-     title:  RandomData.random_sentence,
-     body:   RandomData.random_paragraph,
-     price: RandomData.random_integer
-   )
- end
- sponsored_posts = SponsoredPost.all
  
  # Create Comments
  # #3
@@ -56,15 +44,23 @@
    )
  end
  
-  user = User.first
-  user.update_attributes!(
-   email: 'ijsimon@sbcglobal.net',
-   password: 'Bloc123'
+ # Create an admin user
+ admin = User.create!(
+   name:     'Admin User',
+   email:    'admin@example.com',
+   password: 'helloworld',
+   role:     'admin'
  )
-
+ 
+ # Create a member
+ member = User.create!(
+   name:     'Member User',
+   email:    'member@example.com',
+   password: 'helloworld'
+ )
+ 
  puts "Seed finished"
  puts "#{User.count} users created"
  puts "#{Topic.count} topics created"
  puts "#{Post.count} posts created"
  puts "#{Comment.count} comments created"
- puts "#{SponsoredPost.count} sponsored posts created"
