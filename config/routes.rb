@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   resources :questions
   
   get 'about' => 'welcome#about'
+  get 'faq' => 'welcome#faq'
   
   root 'welcome#index'
 
